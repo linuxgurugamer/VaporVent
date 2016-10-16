@@ -16,22 +16,25 @@ namespace vaporvent
 
 		void PLSteam()
 		{
-			// print ("vaporvent: started makesteam");
-			emitter = part.FindModelComponents<KSPParticleEmitter>();
+            if (HighLogic.LoadedScene != GameScenes.FLIGHT)
+                return;
+            print ("vaporvent: started makesteam, vessel.situation: " + vessel.situation.ToString());
+            emitter = part.FindModelComponents<KSPParticleEmitter>();
 			if (emitter != null)
 			{
 				foreach(KSPParticleEmitter unit in emitter)
 				{
-					if (Vessel.Situations.PRELAUNCH == vessel.situation) 
+					if (Vessel.Situations.PRELAUNCH == vessel.situation || Vessel.Situations.LANDED == vessel.situation) 
 					{
 						unit.emit = true;
-						// print ("vaporvent: true");
+						print ("vaporvent: true");
 					} 
 					else 
 					{
 						unit.emit = false;
-						// print ("vaporvent: false");
-					}
+						print ("vaporvent: false");
+                        CancelInvoke();
+                    }
 				}
 			}
 		}
