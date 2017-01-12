@@ -47,8 +47,20 @@ namespace vaporvent
         public override void OnStart(StartState state)
         {
             // print("vaporvent: OnStart");
+            emitter = part.FindModelComponents<KSPParticleEmitter>();
+            if (emitter != null)
+                foreach (KSPParticleEmitter unit in emitter)
+                    EffectBehaviour.AddParticleEmitter(unit);
+
             base.OnStart(state);
             SlowCheck();
+        }
+        public void OnDestroy()
+        {
+            emitter = part.FindModelComponents<KSPParticleEmitter>();
+            if (emitter != null)
+                foreach (KSPParticleEmitter unit in emitter)
+                    EffectBehaviour.RemoveParticleEmitter(unit);
         }
     }
 }
