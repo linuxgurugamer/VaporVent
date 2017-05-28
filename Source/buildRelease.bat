@@ -1,53 +1,45 @@
 ﻿rem
 @echo off
 
-set DEFHOMEDRIVE=d:
-set DEFHOMEDIR=%DEFHOMEDRIVE%%HOMEPATH%
-set HOMEDIR=
-set HOMEDRIVE=%CD:~0,2%
+cd
+pause
+
 
 set RELEASEDIR=d:\Users\jbb\release
 set ZIP="c:\Program Files\7-zip\7z.exe"
-echo Default homedir: %DEFHOMEDIR%
 
-set /p HOMEDIR= "Enter Home directory, or <CR> for default: "
-
-if "%HOMEDIR%" == "" (
-set HOMEDIR=%DEFHOMEDIR%
-)
-echo %HOMEDIR%
-
-SET _test=%HOMEDIR:~1,1%
-if "%_test%" == ":" (
-set HOMEDRIVE=%HOMEDIR:~0,2%
-)
-
-d:
 cd D:\Users\jbb\github\VaporVent\Source
 
-type VaporVent.version
-set /p VERSION= "Enter version: "
+
+set VERSIONFILE=VaporVent.version
+rem The following requires the JQ program, available here: https://stedolan.github.io/jq/download/
+c:\local\jq-win64  ".VERSION.MAJOR" %VERSIONFILE% >tmpfile
+set /P major=<tmpfile
+
+c:\local\jq-win64  ".VERSION.MINOR"  %VERSIONFILE% >tmpfile
+set /P minor=<tmpfile
+
+c:\local\jq-win64  ".VERSION.PATCH"  %VERSIONFILE% >tmpfile
+set /P patch=<tmpfile
+
+c:\local\jq-win64  ".VERSION.BUILD"  %VERSIONFILE% >tmpfile
+set /P build=<tmpfile
+del tmpfile
+set VERSION=%major%.%minor%.%patch%
+if "%build%" NEQ "0"  set VERSION=%VERSION%.%build%
 
 
-mkdir %HOMEDIR%\install\GameData\VaporVent
-mkdir %HOMEDIR%\install\GameData\VaporVent\Plugins
-mkdir %HOMEDIR%\install\GameData\VaporVent\Parts
-
+echo Version:  %VERSION%
  
 
-del /s /q %HOMEDIR%\install\GameData\VaporVent\*
-rem del /y %HOMEDIR%\install\GameData\VaporVent\Plugins
-rem del /y %HOMEDIR%\install\GameData\VaporVent\Parts
 
-copy /Y "%~dp0bin\Release\VaporVent.dll" "%HOMEDIR%\install\GameData\VaporVent\Plugins"
-xcopy ..\GameData\VaporVent\parts  %HOMEDIR%\install\GameData\VaporVent\Parts
+copy /Y "%~dp0bin\Release\VaporVent.dll" "..\GameData\VaporVent\Plugins"
 
-copy /Y "License.txt" "%HOMEDIR%\install\GameData\VaporVent"
-copy /Y MiniAVC.dll  "%HOMEDIR%\install\GameData\VaporVent"
-copy /Y VaporVent.version  "%HOMEDIR%\install\GameData\VaporVent"
+copy /Y "License.txt" ..\GameData\VaporVent
+copy /Y MiniAVC.dll  ..\GameData\VaporVent
+copy /Y VaporVent.version  ..\GameData\VaporVent
 
-%HOMEDRIVE%
-cd %HOMEDIR%\install
+cd ..
 
 set FILE="%RELEASEDIR%\VaporVent-%VERSION%.zip"
 IF EXIST %FILE% del /F %FILE%
