@@ -1,12 +1,12 @@
 ﻿{
   "NAME": "VaporVent",
-  "URL": "http://ksp-avc.cybutek.net/version.php?id=343",
+  "URL": "https://raw.githubusercontent.com/linuxgurugamer/VaporVent/master/Source/VaporVent.version",
   "DOWNLOAD": "http://spacedock.info/mod/931",
   "VERSION": {
     "MAJOR": 1,
     "MINOR": 1,
     "PATCH": 5,
-    "BUILD": 0
+    "BUILD": 1
   },
   "KSP_VERSION": {
     "MAJOR": 1,
