@@ -2,3 +2,7 @@
 
 1.1.4
 		updated for 1.3
+
+1.1.5
+		Added buttons and toggle so that the vent can be used on planets, and be activated both
+		by an action group and manually

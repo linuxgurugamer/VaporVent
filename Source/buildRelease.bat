@@ -1,8 +1,5 @@
-﻿rem
+﻿
 @echo off
-
-cd
-pause
 
 
 set RELEASEDIR=d:\Users\jbb\release
