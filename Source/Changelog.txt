@@ -6,3 +6,7 @@
 1.1.5
 		Added buttons and toggle so that the vent can be used on planets, and be activated both
 		by an action group and manually
+
+1.1.6
+		Added a check to see if the vessel speed is >10 m/s, if so, no emissions.  This includes being in Orbit
+		Added an alwaysOn flag which can be toggled in the editor.  If enabled, vapor will always be on at speeds <= 10 m/s

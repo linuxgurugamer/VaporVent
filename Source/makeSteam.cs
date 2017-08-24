@@ -12,7 +12,13 @@ namespace vaporvent
 {
 	public class makeSteam : PartModule 
 	{
-		List<KSPParticleEmitter> emitter;
+        [KSPField(guiActiveEditor = true, isPersistant = true)]
+        [UI_Toggle(enabledText = "Yes", disabledText = "No")]
+        public bool alwaysOn = false;
+
+
+
+        List<KSPParticleEmitter> emitter;
 
         bool vaporVisible = false;
 
@@ -33,8 +39,15 @@ namespace vaporvent
 
         private void UpdateEvents(bool visible)
         {
-            Events["ShowSteamEvent"].active = !visible;
-            Events["HideSteamEvent"].active = visible;
+            if (!alwaysOn)
+            {
+                Events["ShowSteamEvent"].active = !visible;
+                Events["HideSteamEvent"].active = visible;
+            } else
+            {
+                Events["ShowSteamEvent"].active = false;
+                Events["HideSteamEvent"].active = false;
+            }
         }
 
         [KSPAction("Toggle Vapor Vent")]
@@ -57,10 +70,10 @@ namespace vaporvent
 			{
 				foreach(KSPParticleEmitter unit in emitter)
 				{
-					if (vaporVisible ) //|| Vessel.Situations.PRELAUNCH == vessel.situation || Vessel.Situations.LANDED == vessel.situation) 
+					if ((vaporVisible || alwaysOn) && vessel.speed < 10 ) //|| Vessel.Situations.PRELAUNCH == vessel.situation || Vessel.Situations.LANDED == vessel.situation) 
 					{
 						unit.emit = true;
-						print ("vaporvent: true");
+						//print ("vaporvent: true");
 					} 
 					else 
 					{
@@ -96,7 +109,7 @@ namespace vaporvent
                 foreach (KSPParticleEmitter unit in emitter)
                     EffectBehaviour.AddParticleEmitter(unit);
             GameEvents.onLaunch.Add(onLaunch);
-
+           
             base.OnStart(state);
             if (Vessel.Situations.PRELAUNCH == vessel.situation || Vessel.Situations.LANDED == vessel.situation)
             {
