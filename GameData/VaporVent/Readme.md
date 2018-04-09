@@ -1,0 +1,3 @@
+How could we continue to play a space game that didn't depict the rocket with wispy vapor trails swirling all around before launch? That is all this part does, nothing more.
+
+The vapour is configured to blow in the same direction as the flag in the main Space Centre launch pad area. As such, you should locate the part so the vapour does not pass through the spacecraft. No warranty expressed or implied.

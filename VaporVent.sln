@@ -1,16 +1,18 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2005
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VaporVent", "VaporVent.csproj", "{E3B49F92-3626-4CB1-A926-F9DEE8E5C35E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VaporVent", "VaporVent\VaporVent.csproj", "{E3B49F92-3626-4CB1-A926-F9DEE8E5C35E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{1035D5B1-F0B2-4E63-B783-F70F8F2919C1}"
 	ProjectSection(SolutionItems) = preProject
 		buildRelease.bat = buildRelease.bat
 		Changelog.txt = Changelog.txt
 		deploy.bat = deploy.bat
+		jenkins.txt = jenkins.txt
 		License.txt = License.txt
+		Readme.md = Readme.md
 		VaporVent.version = VaporVent.version
 	EndProjectSection
 EndProject
@@ -27,5 +29,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {47221A75-E902-4620-802F-4090366C59E4}
 	EndGlobalSection
 EndGlobal

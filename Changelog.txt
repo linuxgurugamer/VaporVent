@@ -1,0 +1,16 @@
+1.1.3	Fixed issue with emitters, thanks @sarbian
+
+1.1.4
+		updated for 1.3
+
+1.1.5
+		Added buttons and toggle so that the vent can be used on planets, and be activated both
+		by an action group and manually
+
+1.1.6
+		Added a check to see if the vessel speed is >10 m/s, if so, no emissions.  This includes being in Orbit
+		Added an alwaysOn flag which can be toggled in the editor.  If enabled, vapor will always be on at speeds <= 10 m/s
+
+1.1.8
+		Updated for 1.4.1
+		Added small and tiny vents, 1/2 and 1/4 the size

@@ -13,7 +13,7 @@ namespace vaporvent
 	public class makeSteam : PartModule 
 	{
         [KSPField(guiActiveEditor = true, isPersistant = true)]
-        [UI_Toggle(enabledText = "Yes", disabledText = "No")]
+        [UI_Toggle(enabledText = "Hide vapor", disabledText = "Show vapor")]
         public bool alwaysOn = false;
 
 
@@ -58,33 +58,46 @@ namespace vaporvent
                 SlowCheck();
             UpdateEvents(vaporVisible);
         }
-
+        void LateUpdate()
+        {
+            if (HighLogic.LoadedScene == GameScenes.EDITOR)
+            {
+                emitter = part.FindModelComponents<KSPParticleEmitter>();
+                foreach (KSPParticleEmitter unit in emitter)
+                {
+                    unit.emit = alwaysOn;
+                }
+                return;
+            }
+        }
 
         void PLSteam()
 		{
-            if (HighLogic.LoadedScene != GameScenes.FLIGHT)
-                return;
-            print ("vaporvent: started makesteam, vessel.situation: " + vessel.situation.ToString());
-            emitter = part.FindModelComponents<KSPParticleEmitter>();
-			if (emitter != null)
-			{
-				foreach(KSPParticleEmitter unit in emitter)
-				{
-					if ((vaporVisible || alwaysOn) && vessel.speed < 10 ) //|| Vessel.Situations.PRELAUNCH == vessel.situation || Vessel.Situations.LANDED == vessel.situation) 
-					{
-						unit.emit = true;
-						//print ("vaporvent: true");
-					} 
-					else 
-					{
-						unit.emit = false;
-						print ("vaporvent: false");
-                        vaporVisible = false;
-                        UpdateEvents(vaporVisible);
-                        CancelInvoke();
+        
+            if (HighLogic.LoadedScene == GameScenes.FLIGHT)
+            {
+                print("vaporvent: started makesteam, vessel.situation: " + vessel.situation.ToString());
+                emitter = part.FindModelComponents<KSPParticleEmitter>();
+                if (emitter != null)
+                {
+                    foreach (KSPParticleEmitter unit in emitter)
+                    {
+                        if ((vaporVisible || alwaysOn) && vessel.speed < 10) //|| Vessel.Situations.PRELAUNCH == vessel.situation || Vessel.Situations.LANDED == vessel.situation) 
+                        {
+                            unit.emit = true;
+                            //print ("vaporvent: true");
+                        }
+                        else
+                        {
+                            unit.emit = false;
+                            print("vaporvent: false");
+                            vaporVisible = false;
+                            UpdateEvents(vaporVisible);
+                            CancelInvoke();
+                        }
                     }
-				}
-			}
+                }
+            }
 		}
 		void SlowCheck()
 		{
