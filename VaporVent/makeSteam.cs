@@ -76,7 +76,7 @@ namespace vaporvent
         
             if (HighLogic.LoadedScene == GameScenes.FLIGHT)
             {
-                print("vaporvent: started makesteam, vessel.situation: " + vessel.situation.ToString());
+                //print("vaporvent: started makesteam, vessel.situation: " + vessel.situation.ToString());
                 emitter = part.FindModelComponents<KSPParticleEmitter>();
                 if (emitter != null)
                 {
@@ -117,18 +117,23 @@ namespace vaporvent
         public override void OnStart(StartState state)
         {
             // print("vaporvent: OnStart");
+            
             emitter = part.FindModelComponents<KSPParticleEmitter>();
+            
             if (emitter != null)
                 foreach (KSPParticleEmitter unit in emitter)
                     EffectBehaviour.AddParticleEmitter(unit);
-            GameEvents.onLaunch.Add(onLaunch);
            
             base.OnStart(state);
-            if (Vessel.Situations.PRELAUNCH == vessel.situation || Vessel.Situations.LANDED == vessel.situation)
+            if (HighLogic.LoadedSceneIsFlight)
             {
-                vaporVisible = true;
-                UpdateEvents(vaporVisible);
-                SlowCheck();
+                GameEvents.onLaunch.Add(onLaunch);
+                if (Vessel.Situations.PRELAUNCH == vessel.situation || Vessel.Situations.LANDED == vessel.situation)
+                {
+                    vaporVisible = true;
+                    UpdateEvents(vaporVisible);
+                    SlowCheck();
+                }
             }
         }
         public void OnDestroy()

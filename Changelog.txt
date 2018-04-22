@@ -14,3 +14,7 @@
 1.1.8
 		Updated for 1.4.1
 		Added small and tiny vents, 1/2 and 1/4 the size
+
+1.1.9
+	Fixed nulref in the editor
+	Removed log spam during flight (once eveyr 5 secs)
