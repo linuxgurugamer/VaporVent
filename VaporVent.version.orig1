@@ -9,18 +9,17 @@
   "VERSION": {
     "MAJOR": 1,
     "MINOR": 1,
-    "PATCH": 10,
-    "BUILD": 0
+    "PATCH": 9,
+    "BUILD": 2
+  },
+  "KSP_VERSION": {
+    "MAJOR": 1,
+    "MINOR": 5,
+    "PATCH": 1
   },
   "KSP_VERSION_MIN": {
     "MAJOR": 1,
-    "MINOR": 8,
-    "PATCH": 0
-  },
-  "INSTALL_LOC_1": {
-    "NAME": "VaporVent",
-    "PATH": "",
-    "DIRECTORY": "VaporVent",
-    "FILE": "VaporVent.version"
+    "MINOR": 5,
+    "PATCH": 1
   }
 }
