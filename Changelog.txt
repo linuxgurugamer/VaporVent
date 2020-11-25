@@ -28,3 +28,7 @@ ChangeLog
 	Updated AssemblyVersion
 	Added InstallChecker
 	Updated for KSP 1.8
+
+0.1.11
+	New parts added, thanks to forum user @stephm
+	Resized new vent parts to 50% scale
