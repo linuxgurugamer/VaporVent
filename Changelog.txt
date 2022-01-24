@@ -36,3 +36,10 @@ ChangeLog
 1.1.11.1
 	Added AssemblyFileVersion
 	Updated version file for 1.12
+
+1.1.12
+	Thanks to github user @Masset stephane for these:
+		Added tweakscale cfg file for Apu unit
+		Re-compiled with Partools 1.12
+		Modified cfg, generator use resource solidfuel (selectable amount) when the resource is empty the apu no longer produces electricity.
+	
