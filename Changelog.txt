@@ -43,3 +43,6 @@ ChangeLog
 		Re-compiled with Partools 1.12
 		Modified cfg, generator use resource solidfuel (selectable amount) when the resource is empty the apu no longer produces electricity.
 	
+1.1.12.1
+	Renamed file to eliminate I18N characters from filename
+	Updated .version file to use github for new version info
